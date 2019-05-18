@@ -2,8 +2,6 @@
 #include<vector>
 using namespace std;
 
-
-
 struct TreeNode {
     int val;
 	TreeNode *left;
@@ -11,7 +9,36 @@ struct TreeNode {
     TreeNode(int x) : val(x), left(NULL), right(NULL) {} 
 };
 
+// 0ms beat 100% 基于栈的非递归
+class Solution {
+public:
+	vector<int> inorderTraversal(TreeNode* root) {
+		vector<int> res;
+		vector<TreeNode*> stack;
+
+		while (root != nullptr || !stack.empty())
+		{
+			while (root != nullptr)
+			{
+				stack.push_back(root);
+				root = root->left;
+			}
+			if (!stack.empty())
+			{
+				root = stack[stack.size()-1];
+				stack.pop_back();
+				res.push_back(root->val);
+				root = root->right;
+			}
+		}
+		return res;
+	}
+};
+
+
+
 // 8ms beat 97% 递归
+/*
 class Solution {
 public:
 	vector<int> inorderTraversal(TreeNode* root) {
@@ -31,6 +58,7 @@ public:
 		helper(res, node->right);
 	}
 };
+*/
 
 
 int main()
