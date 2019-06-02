@@ -18,7 +18,7 @@ int main(){
 int maxValue(int weight[], int values[], int count, int bag_size){
     int row = count+1;
     int clo = bag_size+1;
-    int max_value[row][clo];
+    vector<vector<int>> max_value(row, vector<int>(clo));
 
     for(int i=0;i<row;i++){
         max_value[i][0] = 0;
