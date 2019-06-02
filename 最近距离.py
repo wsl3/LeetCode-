@@ -43,7 +43,7 @@ class Solution(object):
                     break
                 else:
                     temp_d = self.distance(p[i], p[j])
-                    d = temp_d
+                    d = min(temp_d,d)
         return d
 
     def distance(self, x, y):
